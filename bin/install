@@ -18,10 +18,10 @@ DOWNLOAD_FILE_JBOSS="${PN_VERSION}jboss-upgrade.zip"
 DOWNLOAD_LOCATION="http://172.16.1.5"
 COCKPIT_LOCATION="http://127.1.244.1:8080"
 
+cd $OPENSHIFT_PLN_DIR
+
 #Get db connection
 wget -q -O $OPENSHIFT_PLN_DIR/conf/planon-ds.xml $COCKPIT_LOCATION/CloudCockpit/Database/${OPENSHIFT_APP_DNS}/${PN_VERSION}
-
-cd $OPENSHIFT_PLN_DIR
 
 #get jboss file
 wget -q $DOWNLOAD_LOCATION/$DOWNLOAD_FILE_JBOSS
