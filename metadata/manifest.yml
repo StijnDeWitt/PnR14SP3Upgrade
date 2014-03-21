@@ -1,14 +1,14 @@
 Name: planon
 Cartridge-Short-Name: PLN
 Source-Url: https://github.com/HenkLaracker/PnR14SP3Upgrade/archive/master.zip
-Cartridge-Version: '13.3'
+Cartridge-Version: '14.3'
 Compatible-Versions:
-  - '13.3'
+  - '14.3'
 Cartridge-Vendor: cloudiswhoweare
 Display-Name: Planon
 Description: "Planon cartridge"
-Version: '13.3'
-Versions: ['13.3']
+Version: '14.3'
+Versions: ['14.3']
 Vendor: CloudIsWhoWeAre.com
 Categories:
   - web_framework
