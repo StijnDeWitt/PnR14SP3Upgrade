@@ -11,12 +11,12 @@ esac
 
 client_result "Install called Main version: $version"
 
-PN_VERSION="r13sp17"
-DOWNLOAD_FILE_JBOSS="${PN_VERSION}jboss.zip"
-DOWNLOAD_FILE_TOMCAT="${PN_VERSION}tomcat.zip"
-DOWNLOAD_FILE_SWING="${PN_VERSION}swing.zip"
+PN_VERSION="r14sp3"
+DOWNLOAD_FILE_JBOSS="${PN_VERSION}jboss-upgrade.zip"
+
 
 DOWNLOAD_LOCATION="http://172.16.1.5"
+COCKPIT_LOCATION="http://177.1.244.1:8080"
 
 cd $OPENSHIFT_PLN_DIR
 
@@ -39,38 +39,8 @@ cp $OPENSHIFT_PLN_DIR/conf/jndi.properties PlanonProCenter/jboss-6.1.0.Final/ser
 cp $OPENSHIFT_PLN_DIR/conf/hornetq-jms.xml PlanonProCenter/jboss-6.1.0.Final/server/default/deploy/hornetq/
 
 #Get the right DB connections 
-wget -q -O $OPENSHIFT_PLN_DIR/conf/planon-ds.xml http://127.1.244.1:8080/CloudCockpit/Database/${OPENSHIFT_APP_DNS}/${PN_VERSION}
+wget -q -O $OPENSHIFT_PLN_DIR/conf/planon-ds.xml $COCKPIT_LOCATION/CloudCockpit/Database/${OPENSHIFT_APP_DNS}/${PN_VERSION}
 cp $OPENSHIFT_PLN_DIR/conf/planon-ds.xml PlanonProCenter/jboss-6.1.0.Final/server/default/deploy
 
-client_result "Tomcat downloaded"
-
-wget -q $DOWNLOAD_LOCATION/$DOWNLOAD_FILE_TOMCAT
-
-unzip -q $DOWNLOAD_FILE_TOMCAT -d PlanonProCenter
-
-client_result "Tomcat unzipped"
-
-rm $DOWNLOAD_FILE_TOMCAT
-
-cp $OPENSHIFT_PLN_DIR/conf/setenv.sh PlanonProCenter/tomcat-7.0.47/bin/
-cp $OPENSHIFT_PLN_DIR/conf/jndi.properties PlanonProCenter/tomcat-7.0.47/conf/
-cp $OPENSHIFT_PLN_DIR/conf/mobile.properties PlanonProCenter/tomcat-7.0.47/conf/
-cp $OPENSHIFT_PLN_DIR/conf/pss.properties PlanonProCenter/tomcat-7.0.47/conf/
-cp $OPENSHIFT_PLN_DIR/conf/sdk.properties PlanonProCenter/tomcat-7.0.47/conf/
-cp $OPENSHIFT_PLN_DIR/conf/logging.properties PlanonProCenter/tomcat-7.0.47/conf/
-cp $OPENSHIFT_PLN_DIR/conf/mobile.logging.properties PlanonProCenter/tomcat-7.0.47/conf/
-cp $OPENSHIFT_PLN_DIR/conf/pss.logging.properties PlanonProCenter/tomcat-7.0.47/conf/
-cp $OPENSHIFT_PLN_DIR/conf/sdk.logging.properties PlanonProCenter/tomcat-7.0.47/conf/
-
-
-chmod +x PlanonProCenter/tomcat-7.0.47/bin/startup.sh
-chmod +x PlanonProCenter/tomcat-7.0.47/bin/catalina.sh
-chmod +x PlanonProCenter/tomcat-7.0.47/bin/shutdown.sh
-chmod +x PlanonProCenter/tomcat-7.0.47/bin/setenv.sh
-
-#wget -q $DOWNLOAD_LOCATION/$DOWNLOAD_FILE_SWING
-#unzip -q $DOWNLOAD_FILE_SWING -d template
-#rm $DOWNLOAD_FILE_SWING
-#cp $OPENSHIFT_PLN_DIR/conf/jndi.properties template/Client64/
 
 

@@ -19,14 +19,10 @@ function start {
   export JAVA_OPTS="$JAVA_OPTS -da" 
 
   $OPENSHIFT_PLN_DIR/PlanonProCenter/jboss-6.1.0.Final/bin/run.sh -H $OPENSHIFT_PLN_IP -b $OPENSHIFT_PLN_IP  &
-  sleep 30
-  $OPENSHIFT_PLN_DIR/PlanonProCenter/tomcat-7.0.47/bin/startup.sh  &
   }
 
 function stop { 
   client_result "   Stop openshift cartridge runtime"
-  $OPENSHIFT_PLN_DIR/PlanonProCenter/tomcat-7.0.47/bin/shutdown.sh  || echo Shutdown tomcat failed 
-  sleep 30
   $OPENSHIFT_PLN_DIR/PlanonProCenter/jboss-6.1.0.Final/bin/shutdown.sh --host=$OPENSHIFT_PLN_IP || echo Shutdown JBoss failed
   }
 
