@@ -1,0 +1,68 @@
+#!/bin/bash -e
+
+PATH=/bin/:/usr/bin:$PATH
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+client_result "Controll Main called $1"
+
+JBOSS_SCRIPTS=${OPENSHIFT_PLN_DIR}/PlanonProCenter/jboss-6.1.0.Final/bin
+
+function start { 
+  client_result "   Start openshift cartridge runtime"
+  #export JBOSS_CLASSPATH="$OPENSHIFT_PLN_DIR/PlanonProCenter/jboss-6.1.0.Final/bin/planon-jboss-customization.jar"
+
+  export JAVA_OPTS="-Xms128m -Xmx1236m -XX:MaxPermSize=256m -Dorg.jboss.resolver.warning=true -Dsun.rmi.dgc.client.gcInterval=3600000"
+  export JAVA_OPTS="$JAVA_OPTS -Dsun.rmi.dgc.server.gcInterval=3600000 -Djboss.service.binding.set=ports-1 -Djboss.server.log.dir=$OPENSHIFT_PLN_DIR/logs/"
+  export JAVA_OPTS="$JAVA_OPTS -Djboss.boot.server.log.dir=$OPENSHIFT_PLN_DIR/logs/ -server -Dlogging.configuration=file:../../bin/logging.properties"
+  #export JAVA_OPTS="$JAVA_OPTS -Djava.rmi.server.RMIClassLoaderSpi=nl.planon.jboss.system.PlanonJBossRMIClassLoader -DdisableRMIServerCodebase=true "
+  export JAVA_OPTS="$JAVA_OPTS -da" 
+
+  $OPENSHIFT_PLN_DIR/PlanonProCenter/jboss-6.1.0.Final/bin/run.sh -H $OPENSHIFT_PLN_IP -b $OPENSHIFT_PLN_IP  &
+  sleep 30
+  $OPENSHIFT_PLN_DIR/PlanonProCenter/tomcat-7.0.47/bin/startup.sh  &
+  }
+
+function stop { 
+  client_result "   Stop openshift cartridge runtime"
+  $OPENSHIFT_PLN_DIR/PlanonProCenter/tomcat-7.0.47/bin/shutdown.sh  || echo Shutdown tomcat failed 
+  sleep 30
+  $OPENSHIFT_PLN_DIR/PlanonProCenter/jboss-6.1.0.Final/bin/shutdown.sh --host=$OPENSHIFT_PLN_IP || echo Shutdown JBoss failed
+  }
+
+function restart { 
+  client_result "   Restart"
+  stop
+  sleep 30
+  start
+  }
+
+function deploy() {
+  client_result "   deploy"
+  }
+
+function tidy() {
+  client_result "   tidy"
+  }
+
+function catchall {
+    client_result "   $1: not yet implemented"
+}
+
+case "$1" in
+  start)       start ;;
+  stop)        stop ;;
+  restart)     restart ;;
+  status)      status ;;
+  deploy)      deploy ;;
+  reload)      restart ;;
+  tidy)        tidy ;;
+  pre-build)   catchall ;;
+  build)       catchall ;;
+  post-deploy) catchall ;;
+  pre-repo-archive) catchall ;;
+  update-configuration) catchall ;;
+  *)           exit 0
+esac
+
+exit 0

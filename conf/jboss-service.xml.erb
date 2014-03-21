@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE server>
+<!-- $Id: jboss-service.xml,v 1.3 2012/07/25 13:48:18 mahuls Exp $ -->
+
+<server>
+
+  <!-- The HTTP invoker service configration
+  -->
+  <mbean code="org.jboss.invocation.http.server.HttpInvoker"
+    name="jboss:service=invoker,type=http">
+   <attribute name="UseHostName">true</attribute>
+   <attribute name="InvokerURL">http://<%= ENV['OPENSHIFT_APP_DNS'] %>/invoker/EJBInvokerServlet</attribute>
+  </mbean>
+
+   <!-- Expose the Naming service interface via HTTP -->
+   <mbean code="org.jboss.invocation.http.server.HttpProxyFactory"
+      name="jboss:service=invoker,type=http,target=Naming">
+      <!-- The Naming service we are proxying -->
+      <attribute name="InvokerName">jboss:service=NamingBeanImpl</attribute>
+      <!-- Compose the invoker URL from the cluster node address -->
+   <attribute name="UseHostName">true</attribute>
+     <attribute name="InvokerURL">http://<%= ENV['OPENSHIFT_APP_DNS'] %>/invoker/JMXInvokerServlet</attribute>
+      <attribute name="ExportedInterface">org.jnp.interfaces.Naming</attribute>
+      <attribute name="JndiName"></attribute>
+    <attribute name="UseHostName">true</attribute>
+      <attribute name="ClientInterceptors">
+          <interceptors>
+             <interceptor>org.jboss.proxy.ClientMethodInterceptor</interceptor>
+             <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+             <interceptor>org.jboss.naming.interceptors.ExceptionInterceptor</interceptor>
+             <interceptor>org.jboss.invocation.InvokerInterceptor</interceptor>
+          </interceptors>
+      </attribute>
+   </mbean>
+
+   <!-- Expose the Naming service interface via clustered HTTP. This maps
+   to the ReadOnlyJNDIFactory servlet URL
+   -->
+   <mbean code="org.jboss.invocation.http.server.HttpProxyFactory"
+      name="jboss:service=invoker,type=http,target=Naming,readonly=true">
+      <attribute name="InvokerName">jboss:service=NamingBeanImpl</attribute>
+   <attribute name="UseHostName">true</attribute>
+    <attribute name="InvokerURL">http://<%= ENV['OPENSHIFT_APP_DNS'] %>/invoker/readonly/JMXInvokerServlet</attribute>
+      <attribute name="ExportedInterface">org.jnp.interfaces.Naming</attribute>
+      <attribute name="JndiName"></attribute>
+    <attribute name="UseHostName">true</attribute>
+      <attribute name="ClientInterceptors">
+          <interceptors>
+             <interceptor>org.jboss.proxy.ClientMethodInterceptor</interceptor>
+             <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+             <interceptor>org.jboss.naming.interceptors.ExceptionInterceptor</interceptor>
+             <interceptor>org.jboss.invocation.InvokerInterceptor</interceptor>
+          </interceptors>
+      </attribute>
+   </mbean>
+</server>
