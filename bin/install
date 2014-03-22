@@ -13,7 +13,7 @@ client_result "Install called Main version: $version"
 
 PN_VERSION="r14sp3"
 DOWNLOAD_FILE_JBOSS="${PN_VERSION}jboss-upgrade.zip"
-DOWNLOAD_FILE_SWING="${PL_VERSION}swing.zip"
+DOWNLOAD_FILE_SWING="${PN_VERSION}swing.zip"
 
 
 DOWNLOAD_LOCATION="http://172.16.1.5"
