@@ -52,7 +52,7 @@ client_result "Swing start download"
 
 wget -q $DOWNLOAD_LOCATION/$DOWNLOAD_FILE_SWING
 client_result "Swing downloaded"
-unzip -q $DOWNLOAD_FILE_JBOSS -d PlanonProCenter
+unzip -q $DOWNLOAD_FILE_SWING -d PlanonProCenter
 client_result "Swing unzipped"
 cp $OPENSHIFT_PLN_DIR/conf/jndi.properties PlanonProCenter/ProCenterClient/
 
