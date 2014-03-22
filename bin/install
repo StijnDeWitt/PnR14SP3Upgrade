@@ -13,6 +13,7 @@ client_result "Install called Main version: $version"
 
 PN_VERSION="r14sp3"
 DOWNLOAD_FILE_JBOSS="${PN_VERSION}jboss-upgrade.zip"
+DOWNLOAD_FILE_UPGRADE="${PL_VERSION}swing.zip"
 
 
 DOWNLOAD_LOCATION="http://172.16.1.5"
@@ -42,6 +43,13 @@ cp $OPENSHIFT_PLN_DIR/conf/jndi.properties PlanonProCenter/jboss-6.1.0.Final/ser
 #temperary solution for hornet que to stop.
 cp $OPENSHIFT_PLN_DIR/conf/hornetq-jms.xml PlanonProCenter/jboss-6.1.0.Final/server/default/deploy/hornetq/
 
-#Get the right DB connections 
+#Copy the DB connections to server 
 
 cp $OPENSHIFT_PLN_DIR/conf/planon-ds.xml PlanonProCenter/jboss-6.1.0.Final/server/default/deploy
+
+wget -q $DOWNLOAD_LOCATION/$DOWNLOAD_FILE_UPGRADE
+client_result "Swing downloaded"
+unzip -q $DOWNLOAD_FILE_JBOSS -d PlanonProCenter
+client_result "Swing unzipped"
+cp $OPENSHIFT_PLN_DIR/conf/jndi.properties ProCenterClient/
+
