@@ -8,5 +8,7 @@ MODE="-upgradeAll -batch"
 
 CLASSPATH=$(JARS=("$LIB"/$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/*.jar); IFS=:; echo "${JARS[*]}")
 
+cd $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/
+
 java -cp $CLASSPATH $JAVAOPTIONS $MAINCLASS $MODE > $OPENSHIFT_PLN_DIR/logs/upgrade-swing.log 
 
