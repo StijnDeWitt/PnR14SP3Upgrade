@@ -19,8 +19,7 @@ function start {
   export JAVA_OPTS="$JAVA_OPTS -da" 
 
   $OPENSHIFT_PLN_DIR/PlanonProCenter/jboss-6.1.0.Final/bin/run.sh -H $OPENSHIFT_PLN_IP -b $OPENSHIFT_PLN_IP  &
-  sleep 60
-
+  sleep 90
   $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh  &
   }
 
