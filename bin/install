@@ -47,6 +47,7 @@ cp $OPENSHIFT_PLN_DIR/conf/hornetq-jms.xml PlanonProCenter/jboss-6.1.0.Final/ser
 #Copy the DB connections to server 
 
 cp $OPENSHIFT_PLN_DIR/conf/planon-ds.xml PlanonProCenter/jboss-6.1.0.Final/server/default/deploy
+client_result "JBoss configuration files copied"
 
 client_result "Swing start download"
 
@@ -54,5 +55,11 @@ wget -q $DOWNLOAD_LOCATION/$DOWNLOAD_FILE_SWING
 client_result "Swing downloaded"
 unzip -q $DOWNLOAD_FILE_SWING -d PlanonProCenter
 client_result "Swing unzipped"
+rm $DOWNLOAD_FILE_SWING
+
 cp $OPENSHIFT_PLN_DIR/conf/jndi.properties PlanonProCenter/ProCenterClient/
+
+cp $OPENSHIFT_PLN_DIR/conf/run.sh PlanonProCenter/ProCenterClient/
+client_result "Swing configuration files copied"
+
 
