@@ -20,7 +20,8 @@ function start {
 
   $OPENSHIFT_PLN_DIR/PlanonProCenter/jboss-6.1.0.Final/bin/run.sh -H $OPENSHIFT_PLN_IP -b $OPENSHIFT_PLN_IP  &
   sleep 90
-  $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh  &
+  cd $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient 
+  run.sh  &
   }
 
 function stop { 
