@@ -23,7 +23,7 @@ function start {
   sleep 60
   client_result "   Start openshift sleep runtime"
   $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh &
-  PROCESS_ID=$!
+  
   client_result "   Start openshift upgrade runtime" 
   }
 
