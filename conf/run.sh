@@ -4,7 +4,7 @@ JAVAOPTIONS="-Djava.security.auth.login.config=$OPENSHIFT_PLN_DIR/PlanonProCente
 
 MAINCLASS="nl.planon.heracles.client.application.UpgradeTool"
 
-MODE="-upgradeAll -batch"
+MODE="-upgradeAll -batch -nologfile -exitshell"
 
 cd $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/
 
