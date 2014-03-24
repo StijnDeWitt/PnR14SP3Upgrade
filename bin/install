@@ -60,6 +60,8 @@ rm $DOWNLOAD_FILE_SWING
 cp $OPENSHIFT_PLN_DIR/conf/jndi.properties PlanonProCenter/ProCenterClient/
 
 cp $OPENSHIFT_PLN_DIR/conf/run.sh PlanonProCenter/ProCenterClient/
+chmod +x PlanonProCenter/ProCenterClient/run.sh
+
 client_result "Swing configuration files copied"
 
 
