@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JAVAOPTIONS=-Djava.security.auth.login.config=$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/auth.conf
+JAVAOPTIONS="-Djava.security.auth.login.config=$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/auth.conf -server"
 
 MAINCLASS="nl.planon.heracles.client.application.UpgradeTool"
 
