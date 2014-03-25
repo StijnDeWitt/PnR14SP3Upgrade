@@ -27,6 +27,14 @@ Endpoints:
     Private-Port-Name: HTTP_PORT_JBOSS
     Private-Port: 18080
     Public-Port-Name: HTTP_PROXY_PORT
+    Protocols:
+    - http
+    - ws
+    primary: true
+    Mappings:
+    - Frontend: 'invoker'
+      Backend: 'invoker'
+      Options: { websockets: false }
   - Private-IP-Name:   IP
     Private-Port: 11098
     Private-Port-Name:  INTERNAL_RMI_PORT 

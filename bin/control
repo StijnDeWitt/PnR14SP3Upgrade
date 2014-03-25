@@ -20,10 +20,9 @@ function start {
 
   $OPENSHIFT_PLN_DIR/PlanonProCenter/jboss-6.1.0.Final/bin/run.sh -H $OPENSHIFT_PLN_IP -b $OPENSHIFT_PLN_IP &
   client_result "   Start openshift jboss runtime"
-  sleep 60
   
   echo "   Start openshift sleep runtime" >> $OPENSHIFT_PLN_DIR/logs/upgrade-process.log
-  #$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh > $OPENSHIFT_PLN_DIR/logs/upgrade-run.log &
+  $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh > $OPENSHIFT_PLN_DIR/logs/upgrade-run.log &
   echo "   Started openshift upgrade runtime" >> $OPENSHIFT_PLN_DIR/logs/upgrade-process.log
   }
 
