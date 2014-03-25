@@ -23,9 +23,8 @@ function start {
   sleep 60
   
   echo "   Start openshift sleep runtime" >> $OPENSHIFT_PLN_DIR/logs/upgrade-process.log
-  nice -n10 $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh > $OPENSHIFT_PLN_DIR/logs/upgrade-run.log &
+  #$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh > $OPENSHIFT_PLN_DIR/logs/upgrade-run.log &
   echo "   Started openshift upgrade runtime" >> $OPENSHIFT_PLN_DIR/logs/upgrade-process.log
-  return $?
   }
 
 function stop { 
