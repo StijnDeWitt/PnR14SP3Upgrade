@@ -11,46 +11,21 @@ Version: '14.3'
 Versions: ['14.3']
 Vendor: CloudIsWhoWeAre.com
 Categories:
-  - web_framework
   - service
 Website: http://cloudiswhoweare.com
 Help-Topics:
   "Developer Center": https://openshift.redhat.com/community/developers
 Cart-Data:
 Provides:
-Subscribes:
-  set-db-connection-info:
-    Type: "ENV:NET_TCP:db:connection-info"
-    Required: false
 Scaling:
   Min: 1
   Max: 1
 Group-Overrides:
 Endpoints:
   - Private-IP-Name: IP
-    Private-Port-Name: HTTP_PORT_TOMCAT
-    Private-Port: 18070
-    Public-Port-Name: HTTP_PROXY_PORT
-    Protocols:
-    - http
-    - ws
-    primary: true
-    Mappings:
-    - Frontend: ''
-      Backend: ''
-      Options: { websockets: false }
-  - Private-IP-Name: IP
     Private-Port-Name: HTTP_PORT_JBOSS
     Private-Port: 18080
     Public-Port-Name: HTTP_PROXY_PORT
-    Protocols:
-    - http
-    - ws
-    primary: true
-    Mappings:
-    - Frontend: 'invoker'
-      Backend: 'invoker'
-      Options: { websockets: false }
   - Private-IP-Name:   IP
     Private-Port: 11098
     Private-Port-Name:  INTERNAL_RMI_PORT 
