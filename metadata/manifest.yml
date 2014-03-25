@@ -11,6 +11,7 @@ Version: '14.3'
 Versions: ['14.3']
 Vendor: CloudIsWhoWeAre.com
 Categories:
+  - web_framework
   - service
 Website: http://cloudiswhoweare.com
 Help-Topics:
