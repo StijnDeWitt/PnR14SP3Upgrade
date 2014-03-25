@@ -25,6 +25,7 @@ function start {
   client_result "   Start openshift sleep runtime"
   nohup $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh > $OPENSHIFT_PLN_DIR/logs/upgrade-run.log &
   client_result "   Start openshift upgrade runtime" 
+  return $?
   }
 
 function stop { 
