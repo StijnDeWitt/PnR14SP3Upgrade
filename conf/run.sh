@@ -20,24 +20,20 @@ function ishttpup() {
 }
 
 function startUpgrade(){
+  ishttpup
+  JAVAOPTIONS="-Djava.security.auth.login.config=$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/auth.conf"
+  MAINCLASS="nl.planon.heracles.client.application.UpgradeTool"
+  MODE="-upgradeAll -batch"
 
-ishttpup
+  cd $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/
 
-JAVAOPTIONS="-Djava.security.auth.login.config=$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/auth.conf"
+  CLASSPATH=$(JARS=("$LIB"/$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/*.jar); IFS=:; echo "${JARS[*]}")
 
-MAINCLASS="nl.planon.heracles.client.application.UpgradeTool"
+  nohup nice java -cp $CLASSPATH $JAVAOPTIONS $MAINCLASS $MODE 2> $OPENSHIFT_PLN_DIR/logs/upgrade-swing-errors.log > $OPENSHIFT_PLN_DIR/logs/upgrade-swing.log &
 
-MODE="-upgradeAll -batch"
+  client_result "   Update(Swing) run.sh executed"
 
-cd $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/
-
-CLASSPATH=$(JARS=("$LIB"/$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/*.jar); IFS=:; echo "${JARS[*]}")
-
-nohup nice java -cp $CLASSPATH $JAVAOPTIONS $MAINCLASS $MODE 2> $OPENSHIFT_PLN_DIR/logs/upgrade-swing-errors.log > $OPENSHIFT_PLN_DIR/logs/upgrade-swing.log &
-
-client_result "   Update(Swing) run.sh executed"
-
-return 0
+  exit 0
 }
 
 case "$1" in
