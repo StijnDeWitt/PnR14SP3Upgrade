@@ -8,6 +8,23 @@ client_result "Controll Main called $1"
 
 JBOSS_SCRIPTS=${OPENSHIFT_PLN_DIR}/PlanonProCenter/jboss-6.1.0.Final/bin
 
+
+function ishttpup() {
+    count=0
+    while [ ${count} -lt 40 ]
+    do
+        if /usr/sbin/lsof -P -n -i "@${OPENSHIFT_PLN_IP}:${OPENSHIFT_PLN_HTTP_PORT}" | grep "(LISTEN)" > /dev/null; then
+            echo "Found ${OPENSHIFT_PLN_IP}:${OPENSHIFT_PLN_HTTP_PORT} listening port"
+            return 0
+        fi
+        let count=${count}+1
+
+        sleep 2
+    done
+    return 1
+}
+
+
 function start { 
   client_result "   Start openshift cartridge runtime"
   #export JBOSS_CLASSPATH="$OPENSHIFT_PLN_DIR/PlanonProCenter/jboss-6.1.0.Final/bin/planon-jboss-customization.jar"
@@ -20,6 +37,8 @@ function start {
 
   nohup $OPENSHIFT_PLN_DIR/PlanonProCenter/jboss-6.1.0.Final/bin/run.sh -H $OPENSHIFT_PLN_IP -b $OPENSHIFT_PLN_IP &
   client_result "   Start openshift jboss runtime"
+  
+  sleep 10
 
   mkdir $OPENSHIFT_PLN_DIR/logs
   touch $OPENSHIFT_PLN_DIR/logs/upgrade-run.log
@@ -66,6 +85,7 @@ case "$1" in
   post-deploy) catchall ;;
   pre-repo-archive) catchall ;;
   update-configuration) catchall ;;
+  ishttpup     ishttpup ;;
   *)           exit 0
 esac
 
