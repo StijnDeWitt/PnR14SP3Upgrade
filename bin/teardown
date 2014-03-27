@@ -3,10 +3,10 @@
 PATH=/bin/:/usr/bin:$PATH
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
-COCKPIT_LOCATION="http://127.1.244.1:8080"
+COCKPIT_LOCATION="http://cockpit-prod.eu.cloudiswhoweare.com/CloudCockpit"
 
 
 client_result "Teardown called Main"
 
 #call cockpit to remove database.
-curl -i -H "Accept: application/json" -X DELETE $COCKPIT_LOCATION/CloudCockpit/Database/${OPENSHIFT_APP_DNS}
+curl -i -H "Accept: application/json" -X DELETE $COCKPIT_LOCATION/Database/${OPENSHIFT_APP_DNS}
