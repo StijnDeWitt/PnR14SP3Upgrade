@@ -43,8 +43,8 @@ function start {
   #mkdir $OPENSHIFT_PLN_DIR/logs
   #touch $OPENSHIFT_PLN_DIR/logs/upgrade-run.log
 
-  $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh > $OPENSHIFT_PLN_DIR/logs/upgrade-run.log
-  client_result "   Start openshift upgrade runtime"
+  #$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh > $OPENSHIFT_PLN_DIR/logs/upgrade-run.log
+  #client_result "   Start openshift upgrade runtime"
   exit 0
   }
 
