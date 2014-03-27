@@ -25,7 +25,7 @@ function start {
   #mkdir $OPENSHIFT_PLN_DIR/logs
   #touch $OPENSHIFT_PLN_DIR/logs/upgrade-run.log
 
-  nohup nice $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh startUpgrade &
+  nohup nice $OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/run.sh startUpgrade > startUpgarde.log 2>%1 &
   client_result "   Start openshift upgrade runtime"
   exit 0
   }
