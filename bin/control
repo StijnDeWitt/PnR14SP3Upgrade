@@ -85,7 +85,7 @@ case "$1" in
   post-deploy) catchall ;;
   pre-repo-archive) catchall ;;
   update-configuration) catchall ;;
-  ishttpup     ishttpup ;;
+  ishttpup)    ishttpup ;;
   *)           exit 0
 esac
 
