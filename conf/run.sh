@@ -8,7 +8,7 @@ function ishttpup() {
     count=0
     while [ ${count} -lt 40 ]
     do
-        if /usr/sbin/lsof -P -n -i "@${OPENSHIFT_PLN_IP}:${OOPENSHIFT_PLN_HTTP_PORT_JBOSS}" | grep "(LISTEN)" > /dev/null; then
+        if /usr/sbin/lsof -P -n -i "@${OPENSHIFT_PLN_IP}:${OPENSHIFT_PLN_HTTP_PORT_JBOSS}" | grep "(LISTEN)" > /dev/null; then
             echo "Found ${OPENSHIFT_PLN_IP}:${OPENSHIFT_PLN_HTTP_PORT} listening port"
             return 0
         fi
