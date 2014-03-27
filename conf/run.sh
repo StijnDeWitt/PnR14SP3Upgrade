@@ -2,6 +2,8 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
+sleep 30
+
 JAVAOPTIONS="-Djava.security.auth.login.config=$OPENSHIFT_PLN_DIR/PlanonProCenter/ProCenterClient/auth.conf"
 
 MAINCLASS="nl.planon.heracles.client.application.UpgradeTool"
