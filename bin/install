@@ -22,11 +22,11 @@ COCKPIT_LOCATION="http://127.1.244.1:8080"
 cd $OPENSHIFT_PLN_DIR
 
 #Get db connection
-wget -q -O --http-user=cockpit --http-password=test1234 $OPENSHIFT_PLN_DIR/conf/planon-ds.xml $COCKPIT_LOCATION/CloudCockpit/Database/${OPENSHIFT_APP_DNS}/${PN_VERSION}
+wget -q --http-user=cockpit --http-password=test1234 --output-document=$OPENSHIFT_PLN_DIR/conf/planon-ds.xml $COCKPIT_LOCATION/CloudCockpit/Database/${OPENSHIFT_APP_DNS}/${PN_VERSION}
 
 client_result "JBoss start download"
 #get jboss file
-wget -q --http-user=cockpit --http-password=test1234 $DOWNLOAD_LOCATION/$DOWNLOAD_FILE_JBOSS
+wget -q $DOWNLOAD_LOCATION/$DOWNLOAD_FILE_JBOSS
 
 client_result "JBoss downloaded"
 
