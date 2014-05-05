@@ -1,6 +1,6 @@
 Name: planon
 Cartridge-Short-Name: PLN
-Source-Url: https://github.com/HenkLaracker/PnR14SP3Upgrade/archive/master.zip
+Source-Url: https://github.com/StijnDeWitt/PnR14SP3Upgrade/archive/master.zip
 Cartridge-Version: '14.3'
 Compatible-Versions:
   - '14.3'
