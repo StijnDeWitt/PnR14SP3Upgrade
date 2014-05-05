@@ -3,8 +3,8 @@
 PATH=/bin/:/usr/bin:$PATH
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
-COCKPIT_LOCATION="http://cockpit-prod.eu.cloudiswhoweare.com/CloudCockpit"
-
+# COCKPIT_LOCATION="http://cockpit-prod.eu.cloudiswhoweare.com/CloudCockpit"
+COCKPIT_LOCATION=${PLANON_COCKPIT_URL}
 
 client_result "Teardown called Main"
 
